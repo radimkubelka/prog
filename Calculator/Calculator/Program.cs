@@ -37,8 +37,24 @@ namespace Calculator
              * 3) Umozni uzivateli zadavat i desetinna cisla, tedy prekopej kalkulacku tak, aby umela pracovat s floaty
              */
 
-            //Tento komentar smaz a misto nej zacni psat svuj prdacky kod.
-
+            Console.WriteLine("napiš první číslo");
+             string skorocislo1 = Console.ReadLine();
+            int cislo1 = int.Parse(skorocislo1);
+            Console.WriteLine("napiš druhé číslo");
+            string skorocislo2 = Console.ReadLine();
+            int cislo2 =int.Parse(skorocislo2);
+            Console.WriteLine("zadej operaci (možnosti: +, -, *, /)");
+            string operace = Console.ReadLine();
+            int vysledek = 0;
+            if (operace == "+")
+                vysledek = cislo1 + cislo2;
+            else if (operace == "-")
+                vysledek = cislo1 - cislo2;
+            else if (operace == "*")
+                vysledek = (cislo1 * cislo2);
+            else
+                vysledek = (cislo1 / cislo2);
+            Console.WriteLine(cislo1 + " "+ operace +" " + cislo2 + " = " + vysledek);
             Console.ReadKey(); //Toto nech jako posledni radek, aby se program neukoncil ihned, ale cekal na stisk klavesy od uzivatele.
         }
     }
