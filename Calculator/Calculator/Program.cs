@@ -43,19 +43,80 @@ namespace Calculator
             Console.WriteLine("napiš první číslo");
             while (!float.TryParse(Console.ReadLine(), out cislo1))
             {
-                Console.WriteLine("Zadej platné číslo");
+                Console.WriteLine("Zadej platné první číslo");
             }
             Console.WriteLine("napiš druhé číslo");
             while (!float.TryParse(Console.ReadLine(), out cislo2))
             {
-                Console.WriteLine("Zadej platné číslo");
+                Console.WriteLine("Zadej platné druhé číslo");
             }
             Console.WriteLine("zadej operaci (možnosti: +, -, *, /)");
             operace = Console.ReadLine();
-            while (operace != "+" && != "-" && != "*" && != "/")
+            while (operace != "+" && operace != "-" && operace != "*" && operace != "/")
             {
                 Console.WriteLine("Zadej možnou operaci");
             }
+            
+            
+            if (operace == "+")
+            {
+                vysledek = cislo1 + cislo2;
+            }
+            else if (operace == "-")
+            {
+                vysledek = cislo1 - cislo2;
+            }
+            else if (operace == "/")
+            {
+                if (cislo2 != 0)
+                {
+                    vysledek = cislo1 / cislo2;
+                }
+                else
+                {
+                    Console.WriteLine("nulou nelze dělit");
+                    Console.ReadKey();
+                    return;
+                }
+            }
+            else
+            {
+                vysledek = (cislo1 * cislo2);
+            }
+            
+            Console.WriteLine(cislo1 + " "+ operace +" " + cislo2 + " = " + vysledek);
+            Console.ReadKey(); //Toto nech jako posledni radek, aby se program neukoncil ihned, ale cekal na stisk klavesy od uzivatele.
+
+
+            // počítání pomocí swich
+            /*switch (operace)
+            {
+                case "+":
+                    vysledek = cislo1 + cislo2;
+                    break;
+                case "-":
+                    vysledek = cislo1 - cislo2;
+                    break;
+                case "*":
+                    vysledek = cislo1 * cislo2;
+                    break;
+                case "/":
+                    if (cislo2 != 0)
+                    {
+                        vysledek = cislo1 / cislo2;
+                    }
+                    else
+                    {
+                        Console.WriteLine("nulou nelze dělit");
+                        Console.ReadKey();
+                        return;
+                    }
+                    break;
+            }
+            Console.WriteLine(cislo1 + " " + operace + " " + cislo2 + " = " + vysledek);*/
+
+
+            //načtení hodnot bez opravování
             /*Console.WriteLine("napiš první číslo");
             string skorocislo1 = Console.ReadLine();
             float cislo1 = float.Parse(skorocislo1);
@@ -65,31 +126,6 @@ namespace Calculator
             string skorocislo2 = Console.ReadLine();
             float cislo2 = float.Parse(skorocislo2);
             float vysledek = 0;*/
-            if (operace == "+")
-                vysledek = cislo1 + cislo2;
-            else if (operace == "-")
-                vysledek = cislo1 - cislo2;
-            else if (operace == "/")
-                vysledek = cislo1 / cislo2;
-            else
-                vysledek = (cislo1 * cislo2);
-            Console.WriteLine(cislo1 + " "+ operace +" " + cislo2 + " = " + vysledek);
-            Console.ReadKey(); //Toto nech jako posledni radek, aby se program neukoncil ihned, ale cekal na stisk klavesy od uzivatele.
-
-
-
-            /*while (!float.TryParse(Console.ReadLine(),out cislo1 ))
-            {
-                Console.WriteLine("Zadej platné číslo");
-            }
-            while (!float.TryParse(Console.ReadLine(), out cislo2))
-            {
-                Console.WriteLine("Zadej platné číslo");
-            }
-            while (!char.TryParse(Console.ReadLine(), out operace))
-            {
-                Console.WriteLine("Zadej platné číslo");
-            }*/
         }
     }
 }
