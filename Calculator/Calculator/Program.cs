@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -36,26 +37,59 @@ namespace Calculator
              *       - https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/iteration-statements#the-while-statement
              * 3) Umozni uzivateli zadavat i desetinna cisla, tedy prekopej kalkulacku tak, aby umela pracovat s floaty
              */
-
+            float cislo1, cislo2;
+            string operace;
+            float vysledek =0;
             Console.WriteLine("napiš první číslo");
-             string skorocislo1 = Console.ReadLine();
-            int cislo1 = int.Parse(skorocislo1);
+            while (!float.TryParse(Console.ReadLine(), out cislo1))
+            {
+                Console.WriteLine("Zadej platné číslo");
+            }
             Console.WriteLine("napiš druhé číslo");
-            string skorocislo2 = Console.ReadLine();
-            int cislo2 =int.Parse(skorocislo2);
+            while (!float.TryParse(Console.ReadLine(), out cislo2))
+            {
+                Console.WriteLine("Zadej platné číslo");
+            }
+            Console.WriteLine("zadej operaci (možnosti: +, -, *, /)");
+            operace = Console.ReadLine();
+            while (operace != "+" && != "-" && != "*" && != "/")
+            {
+                Console.WriteLine("Zadej možnou operaci");
+            }
+            /*Console.WriteLine("napiš první číslo");
+            string skorocislo1 = Console.ReadLine();
+            float cislo1 = float.Parse(skorocislo1);
             Console.WriteLine("zadej operaci (možnosti: +, -, *, /)");
             string operace = Console.ReadLine();
-            int vysledek = 0;
+            Console.WriteLine("napiš druhé číslo");
+            string skorocislo2 = Console.ReadLine();
+            float cislo2 = float.Parse(skorocislo2);
+            float vysledek = 0;*/
             if (operace == "+")
                 vysledek = cislo1 + cislo2;
             else if (operace == "-")
                 vysledek = cislo1 - cislo2;
-            else if (operace == "*")
-                vysledek = (cislo1 * cislo2);
+            else if (operace == "/")
+                vysledek = cislo1 / cislo2;
             else
-                vysledek = (cislo1 / cislo2);
+                vysledek = (cislo1 * cislo2);
             Console.WriteLine(cislo1 + " "+ operace +" " + cislo2 + " = " + vysledek);
             Console.ReadKey(); //Toto nech jako posledni radek, aby se program neukoncil ihned, ale cekal na stisk klavesy od uzivatele.
+
+
+
+            /*while (!float.TryParse(Console.ReadLine(),out cislo1 ))
+            {
+                Console.WriteLine("Zadej platné číslo");
+            }
+            while (!float.TryParse(Console.ReadLine(), out cislo2))
+            {
+                Console.WriteLine("Zadej platné číslo");
+            }
+            while (!char.TryParse(Console.ReadLine(), out operace))
+            {
+                Console.WriteLine("Zadej platné číslo");
+            }*/
         }
     }
 }
