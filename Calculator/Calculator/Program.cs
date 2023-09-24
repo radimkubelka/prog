@@ -37,27 +37,29 @@ namespace Calculator
              *       - https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/iteration-statements#the-while-statement
              * 3) Umozni uzivateli zadavat i desetinna cisla, tedy prekopej kalkulacku tak, aby umela pracovat s floaty
              */
-            float cislo1, cislo2;
+
+            //Chatgpt jsem použil na objevení možných funkcí. Např. funkce z class Math, o jejichž existenci jsem netušil
+
+            double cislo1, cislo2;
             string operace;
-            float vysledek =0;
+            double vysledek = 0;
             Console.WriteLine("napiš první číslo");
-            while (!float.TryParse(Console.ReadLine(), out cislo1))
+            while (!double.TryParse(Console.ReadLine(), out cislo1))
             {
                 Console.WriteLine("Zadej platné první číslo");
             }
             Console.WriteLine("napiš druhé číslo");
-            while (!float.TryParse(Console.ReadLine(), out cislo2))
+            while (!double.TryParse(Console.ReadLine(), out cislo2))
             {
                 Console.WriteLine("Zadej platné druhé číslo");
             }
-            Console.WriteLine("zadej operaci (možnosti: +, -, *, /)");
+            Console.WriteLine("zadej operaci (možnosti: +, -, *, /, ^, sqrt, log , log10, sin ( sqrt, log, log10, sin, cos, tanje jen z čísla 1)");
             operace = Console.ReadLine();
-            while (operace != "+" && operace != "-" && operace != "*" && operace != "/")
+            while (operace != "+" && operace != "-" && operace != "*" && operace != "/" && operace != "^" && operace!= "sqrt" && operace != "log" && operace != "log10" && operace != "sin" && operace != "cos" && operace != "tan")
             {
                 Console.WriteLine("Zadej možnou operaci");
             }
-            
-            
+
             if (operace == "+")
             {
                 vysledek = cislo1 + cislo2;
@@ -79,12 +81,51 @@ namespace Calculator
                     return;
                 }
             }
+            else if (operace == "^")
+            {
+                vysledek = Math.Pow(cislo1,cislo2);
+            }
+            else if (operace == "sqrt")
+            {
+                vysledek = Math.Sqrt(cislo1);
+            }
+            else if (operace == "log")
+            {
+                vysledek = Math.Log(cislo1);
+            }
+            else if (operace == "log10")
+            {
+                vysledek = Math.Log10(cislo1);
+            }
+            else if (operace == "sin")
+            {
+                vysledek = Math.Sin(cislo1);
+            }
+            else if (operace == "cos")
+            {
+                vysledek = Math.Cos(cislo1);
+            }
+            else if (operace == "tan")
+            {
+                vysledek = Math.Tan(cislo1);
+            }
             else
             {
                 vysledek = (cislo1 * cislo2);
             }
-            
-            Console.WriteLine(cislo1 + " "+ operace +" " + cislo2 + " = " + vysledek);
+
+            Console.WriteLine(cislo1 + " " + operace + " " + cislo2 + " = " + vysledek);
+
+            // zatím nefunguje
+            /*if (operace == "+" && operace == "-" && operace == "*" && operace == "/")
+            {
+                Console.WriteLine(cislo1 + " "+ operace +" " + cislo2 + " = " + vysledek);
+            }
+            else
+            {
+                Console.WriteLine(cislo1 + " " + operace +" = "+vysledek);
+            }*/
+
             Console.ReadKey(); //Toto nech jako posledni radek, aby se program neukoncil ihned, ale cekal na stisk klavesy od uzivatele.
 
 
@@ -119,7 +160,7 @@ namespace Calculator
             //načtení hodnot bez opravování
             /*Console.WriteLine("napiš první číslo");
             string skorocislo1 = Console.ReadLine();
-            float cislo1 = float.Parse(skorocislo1);
+            double cislo1 = float.Parse(skorocislo1);
             Console.WriteLine("zadej operaci (možnosti: +, -, *, /)");
             string operace = Console.ReadLine();
             Console.WriteLine("napiš druhé číslo");
