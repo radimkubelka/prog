@@ -38,6 +38,8 @@ namespace Calculator
              * 3) Umozni uzivateli zadavat i desetinna cisla, tedy prekopej kalkulacku tak, aby umela pracovat s floaty
              */
 
+
+
             //Chatgpt jsem použil na objevení možných funkcí. Např. funkce z class Math, o jejichž existenci jsem netušil
 
             double cislo1, cislo2;
@@ -48,17 +50,28 @@ namespace Calculator
             {
                 Console.WriteLine("Zadej platné první číslo");
             }
-            Console.WriteLine("napiš druhé číslo");
-            while (!double.TryParse(Console.ReadLine(), out cislo2))
-            {
-                Console.WriteLine("Zadej platné druhé číslo");
-            }
-            Console.WriteLine("zadej operaci (možnosti: +, -, *, /, ^, sqrt, log , log10, sin ( sqrt, log, log10, sin, cos, tanje jen z čísla 1)");
+
+            Console.WriteLine("zadej operaci (možnosti: +, -, *, /, ^, sqrt, log , log10, sin, cos, tan, cotg, abs, sin-1, cos-1, tan-1 ( sqrt, log, log10, sin, cos, tan, cotg, abs, sin-1, cos-1, tan-1 je jen z 1. čísla)");
             operace = Console.ReadLine();
-            while (operace != "+" && operace != "-" && operace != "*" && operace != "/" && operace != "^" && operace!= "sqrt" && operace != "log" && operace != "log10" && operace != "sin" && operace != "cos" && operace != "tan")
+            while (operace != "+" && operace != "-" && operace != "*" && operace != "/" && operace != "^" && operace != "sqrt" && operace != "log" && operace != "log10" && operace != "sin" && operace != "cos" && operace != "tan" && operace != "cotg" && operace != "abs" && operace != "sin-1" && operace != "cos-1" && operace != "tan-1")
             {
                 Console.WriteLine("Zadej možnou operaci");
             }
+
+            if (operace != "sqrt" && operace != "log" && operace != "log10" && operace != "sin" && operace != "cos" && operace != "tan" && operace != "cotg" && operace != "abs" && operace != "sin-1" && operace != "cos-1" && operace != "tan-1")
+            {
+                Console.WriteLine("napiš druhé číslo");
+                while (!double.TryParse(Console.ReadLine(), out cislo2))
+                {
+                    Console.WriteLine("Zadej platné druhé číslo");
+                }
+            }
+            else
+            {
+                cislo2 = 0;
+            }
+
+            //po sem načítání proměnných, odsud vlastní počítání
 
             if (operace == "+")
             {
@@ -70,7 +83,7 @@ namespace Calculator
             }
             else if (operace == "/")
             {
-                if (cislo2 != 0)
+                if (cislo2 == 0)
                 {
                     vysledek = cislo1 / cislo2;
                 }
@@ -109,22 +122,41 @@ namespace Calculator
             {
                 vysledek = Math.Tan(cislo1);
             }
+            else if (operace == "cotg")
+            {
+                vysledek = 1/Math.Tan(cislo1);
+            }
+            else if (operace == "abs")
+            {
+                vysledek = Math.Abs(cislo1);
+            }
+            else if (operace == "sin-1")
+            {
+                vysledek = Math.Asin(cislo1);
+            }
+            else if (operace == "cos-1")
+            {
+                vysledek = Math.Acos(cislo1);
+            }
+            else if (operace == "tan-1")
+            {
+                vysledek = Math.Atan(cislo1);
+            }
             else
             {
                 vysledek = (cislo1 * cislo2);
             }
+            
+            //různé zapsání výsledků -> u něčeho není potřeba znát druhé číslo
 
-            Console.WriteLine(cislo1 + " " + operace + " " + cislo2 + " = " + vysledek);
-
-            // zatím nefunguje
-            /*if (operace == "+" && operace == "-" && operace == "*" && operace == "/")
+            if (operace != "sqrt" && operace != "log" && operace != "log10" && operace != "sin" && operace != "cos" && operace != "tan" && operace != "cotg" && operace != "abs" && operace != "sin-1" && operace != "cos-1" && operace != "tan-1")
             {
-                Console.WriteLine(cislo1 + " "+ operace +" " + cislo2 + " = " + vysledek);
+                Console.WriteLine(cislo1 + " " + operace + " " + cislo2 + " = " + vysledek);
             }
             else
             {
-                Console.WriteLine(cislo1 + " " + operace +" = "+vysledek);
-            }*/
+                Console.WriteLine(operace +" "+ cislo1 + " = " + vysledek);
+            }
 
             Console.ReadKey(); //Toto nech jako posledni radek, aby se program neukoncil ihned, ale cekal na stisk klavesy od uzivatele.
 
