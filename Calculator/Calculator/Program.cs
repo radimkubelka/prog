@@ -56,6 +56,7 @@ namespace Calculator
             while (operace != "+" && operace != "-" && operace != "*" && operace != "/" && operace != "^" && operace != "sqrt" && operace != "log" && operace != "log10" && operace != "sin" && operace != "cos" && operace != "tan" && operace != "cotg" && operace != "abs" && operace != "sin-1" && operace != "cos-1" && operace != "tan-1")
             {
                 Console.WriteLine("Zadej možnou operaci");
+                operace = Console.ReadLine();
             }
 
             if (operace != "sqrt" && operace != "log" && operace != "log10" && operace != "sin" && operace != "cos" && operace != "tan" && operace != "cotg" && operace != "abs" && operace != "sin-1" && operace != "cos-1" && operace != "tan-1")
