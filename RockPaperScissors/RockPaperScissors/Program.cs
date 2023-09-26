@@ -59,6 +59,11 @@ namespace RockPaperScissors
             {
                 Console.WriteLine("kámen, nůžky, papír");
                 string hrac = Console.ReadLine();
+                while (hrac != "kámen" && hrac != "nůžky" && hrac != "papír")
+                {
+                    Console.WriteLine("můžeš jen kámen, nůžky nebo paír");
+                    hrac = Console.ReadLine();
+                }
                int pocitac = rng.Next(1,4);         //1=kamen, 2=nuzky, 3=papir
                 if (hrac == "kámen")
                 {
@@ -94,7 +99,7 @@ namespace RockPaperScissors
                         Console.WriteLine("výhra");
                     }
                 }
-                if (hrac == "papir")
+                if (hrac == "papír")
                 {
                     if (pocitac == 1)
                     {
