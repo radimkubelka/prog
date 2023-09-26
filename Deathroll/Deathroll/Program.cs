@@ -54,6 +54,20 @@ namespace Deathroll
              * ROZSIRENI:
              * - umozni uzivateli opakovat deathroll dokud ma nejake goldy
              */
+
+
+            int nroll = 0;
+            int gu = 1000;
+            int gp = 1000;      //now roll, goldy uzivatele, goldy pocitace
+            Console.WriteLine("kolik chceš rollovat?");
+            while (!int.TryParse(Console.ReadLine(), out nroll))
+            {
+                Console.WriteLine("můžeš jen pod 1000");
+            }
+
+            Console.WriteLine(nroll);
+
+            Console.ReadKey();
         }
     }
 }
