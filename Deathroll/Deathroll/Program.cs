@@ -56,16 +56,93 @@ namespace Deathroll
              */
 
 
-            int nroll = 0;
             int gu = 1000;
             int gp = 1000;      //now roll, goldy uzivatele, goldy pocitace
+            int kolo = 0;
             Console.WriteLine("kolik chceš rollovat?");
-            while (!int.TryParse(Console.ReadLine(), out nroll))
+            int nroll = int.Parse(Console.ReadLine());
+            while (nroll > gu || nroll <1)
             {
-                Console.WriteLine("můžeš jen pod 1000");
+                Console.WriteLine("můžeš jen od 1 do "+gu+", zkus to znovu");
+                nroll = int.Parse(Console.ReadLine());
             }
+            Console.WriteLine();
+            int bet = nroll;
+            Random rng = new Random();
 
-            Console.WriteLine(nroll);
+            for (int u = 0; gu > 0; u++)
+            {
+                for (int i = 1; ; i++)
+                {
+                    if (nroll == 1)
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        if (i % 2 != 0)  //liché kolo = hráč
+                        {
+                            kolo += 1;
+                            Console.WriteLine("kolo: " + kolo + ", hraje hráč od 1 do " + nroll);
+                            nroll = rng.Next(1, nroll + 1);
+                            Console.WriteLine("padlo " + nroll);
+                            Console.WriteLine();
+                        }
+                        else             //sudé kolo = počítač
+                        {
+                            kolo += 1;
+                            Console.WriteLine("kolo: " + kolo + ", hraje počítač od 1 do " + nroll);
+                            nroll = rng.Next(1, nroll + 1);
+                            Console.WriteLine("padlo " + nroll);
+                            Console.WriteLine();
+                        }
+                    }
+
+                }
+                if (kolo % 2 == 0)
+                {
+                    Console.WriteLine("vyhrál jsi");
+                    gu = gu + bet;
+                    gp = gp - bet;
+                }
+                else
+                {
+                    Console.WriteLine("prohrál jsi");
+                    gp = gp + bet;
+                    gu = gu - bet;
+                }
+
+                Console.WriteLine("goldy hráče: " + gu + "  goldy počítače: " + gp);
+                //rozšíření
+                Console.WriteLine();
+                if (gu > 0)
+                {
+                    Console.WriteLine("Chceš hrát znovu?");
+                    string pokracovani = Console.ReadLine();
+                    if (pokracovani != "ano")
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        Console.WriteLine("kolik chceš rollovat? (max " + gu + ")");
+                        nroll = int.Parse(Console.ReadLine());
+                        while (nroll > gu || nroll < 1)
+                        {
+                            Console.WriteLine("můžeš jen od 1 do " + gu + ", zkus to znovu");
+                            nroll = int.Parse(Console.ReadLine());
+                        }
+                        Console.WriteLine();
+                        bet = nroll;
+                        kolo = 0;
+                    }
+                }
+                else
+                {
+                    break;
+                }
+            }
+            Console.WriteLine("konec hry žebráku nebo zbabělče");
 
             Console.ReadKey();
         }
