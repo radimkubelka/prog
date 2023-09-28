@@ -116,6 +116,7 @@ namespace RockPaperScissors
                         Console.WriteLine("remíza");
                     }
                 }
+                Console.WriteLine("počítač: " + sp + "  hráč: "+sh);
             }
             if (sh > sp)
             {
