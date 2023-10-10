@@ -38,13 +38,9 @@ namespace RecursionPlayground
         static int Fibonacci(int n)
         {
             // TODO: Urci ukoncovaci podminku pro Fibonacciho a zavolej Fibonacci zevnitr se spravnym parametrem / vypoctem.
-            if (n == 2)
+            if (n <= 2)
             {
                 return 1;
-            }
-            else if (n == 1)
-            {
-                return 0;
             }
             int nFibonacci = Fibonacci(n - 1) + Fibonacci(n - 2);
             return nFibonacci; 
