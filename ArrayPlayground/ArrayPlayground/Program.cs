@@ -69,7 +69,7 @@ namespace ArrayPlayground
             Console.WriteLine("co  chceš najít?");
             int usernumber = int.Parse(Console.ReadLine());
             bool foundnumber = false;
-            for (int i =0; i < myArray.Length; i++)
+            for (int i = 0; i < myArray.Length; i++)
             {
                 if (myArray[i] == usernumber)
                 {
@@ -83,12 +83,37 @@ namespace ArrayPlayground
                 Console.WriteLine($"hledané číslo {usernumber} v seznamu není");
             }
             //TODO 8: Změň tvorbu integerového pole tak, že bude obsahovat 100 náhodně vygenerovaných čísel od 0 do 9. Vytvoř si na to proměnnou typu Random.
+            Random rng = new Random();
+            myArray = new int[100];
+            for (int i = 0;i < myArray.Length; i++)
+            {
+                myArray[i] = rng.Next(0,10);
+                Console.WriteLine($"číslo na indexu {i} je {myArray[i]}");
+            }
 
             //TODO 9: Spočítej kolikrát se každé číslo v poli vyskytuje a spočítané četnosti vypiš do konzole.
             int[] counts = new int[10];
+            foreach (int number in myArray)
+            {
+                counts[number]++;
+            }
+            for (int i = 0; i < counts.Length; i++)
+            {
+                Console.WriteLine($"Číslo {i} se vyskytuje {counts[i]} krát");
+            }
+
 
             //TODO 10: Vytvoř druhé pole, do kterého zkopíruješ prvky z prvního pole v opačném pořadí.
-
+            int[] mySecondArray = new int[100];
+            for(int i = myArray.Length-1; i>=0 ; i--) //nebo (int i = 0; i < myArray.Lenght;i++) {mySecondArray[mySecondArray.Lenght - 1 - i] = myArray[i]}
+            {
+                mySecondArray[i] = myArray[99-i];
+            }
+            Console.WriteLine("druhé pole");
+            foreach (int number in mySecondArray)
+            {
+                Console.Write(number);
+            }
 
             Console.ReadKey();
         }
