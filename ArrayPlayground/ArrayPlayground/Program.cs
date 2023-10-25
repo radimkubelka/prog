@@ -105,7 +105,7 @@ namespace ArrayPlayground
 
             //TODO 10: Vytvoř druhé pole, do kterého zkopíruješ prvky z prvního pole v opačném pořadí.
             int[] mySecondArray = new int[100];
-            for(int i = myArray.Length-1; i>=0 ; i--) //nebo (int i = 0; i < myArray.Lenght;i++) {mySecondArray[mySecondArray.Lenght - 1 - i] = myArray[i]}
+            for(int i = myArray.Length-1; i>=0 ; i--) //nebo (int i = 0; i < myArray.Lenght;i++) {mySecondArray[mySecondArray.Lenght - 1 - i] = myArray[i]} 
             {
                 mySecondArray[i] = myArray[99-i];
             }
