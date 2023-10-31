@@ -15,10 +15,13 @@ namespace SearchPlayground
              * Projdi for cyklem celé pole od začátku do konce (0 až array.Length - 1) a u každého prvku zkontroluj, jestli se nerovná hledanému prvku.
              * Pokud ano, vrať jeho index (Který se rovná i počtu prvků, které jsi prošel, než jsi požadované číslo našel.)
              */
+            int InternalDivisionCount = 0;
             for (int i = 0; i < array.Length; i++)
             {
+                InternalDivisionCount++;
                 if (array[i] == elementToSearch)
                 {
+                    Console.WriteLine($"            počet kroků: {InternalDivisionCount}");
                     return i;
                 }
             }
@@ -40,25 +43,26 @@ namespace SearchPlayground
              * Až ti bude binary search fungovat, přidej k němu proměnnou, která ti bude počítat, kolikrát jsi musel rozdělit interval, než jsi prvek našel
              * a před returnem ho vypiš uživateli do konzole.
              */
+            int InternalDivisionCount = 0;
             int l = 0;
             int h = array.Length - 1;
             int m;
-            for (int i = 0; h != l; i++)
+            for (int i = 0; l <= h; i++)
             {
+                InternalDivisionCount++;
                 m = (h+l) / 2;
                 if (array[m] == elementToSearch)
                 {
+                    Console.WriteLine($"             počet kroků: {InternalDivisionCount}");
                     return m;
                 }
                 else if (array[m] < elementToSearch)       //nad středem
                 {
                     l = m + 1;
-
                 }
                 else                                //pod středem
                 {
                     h = m - 1;
-
                 }
 
             }
@@ -72,12 +76,20 @@ namespace SearchPlayground
         static int BinarySearchRecursive(int[] array, int elementToSearch, int lower, int upper)
         {
             //TODO naimplementuj binární vyhledávání rekurzivním způsobem (Zamysli se nad parametry, které tato funkce přijímá vzpomeň si na přístup Rozděl a Panuj.)
-
-            int result = BinarySearchRecursive(array, elementToSearch, lower, upper);
-            
-             return result;
-            
-            return -1;
+            if (lower > upper)
+            {
+                return -1;
+            }
+            int mid = (upper + lower) / 2;
+            if (array[mid] == elementToSearch)
+            {
+                return mid;
+            }
+            if (array[mid] < elementToSearch)
+            {
+               return BinarySearchRecursive(array, elementToSearch, mid + 1, upper);
+            }
+               return BinarySearchRecursive(array, elementToSearch, lower, mid - 1);
         }
 
         //Naplní pole náhodnými rostoucími čísly.
