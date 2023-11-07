@@ -263,17 +263,17 @@ namespace maticeukol
                     MultiplyWithArray(my2DArray, rows, columns, ResultArray);
                     WriteArray(ResultArray);
                     break;
-                case "sum":
+                case "sum":                                                                         //součet matice
                     int Sum = 0;
                     Sum = SumOfArray(my2DArray, Sum);
                     Console.WriteLine($"součet všech polí v matici je {Sum}");
                     break;
-                case "max":
+                case "max":                                                                         //maximální číslo v matici
                     int Max = int.MinValue;
                     Max = MaxOfArray(my2DArray, Max);
                     Console.WriteLine($"největší číslo v matici je {Max}");
                     break;
-                case "min":
+                case "min":                                                                          //minimální číslo v matici   
                     int Min = int.MaxValue;
                     Min = MinOfArray(my2DArray, Min);
                     Console.WriteLine($"nejmenší číslo v matici je {Min}");
