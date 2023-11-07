@@ -1,6 +1,10 @@
-﻿using System.Data;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace maticeukol
+namespace ukolmatice
 {
     internal class Program
     {
@@ -21,11 +25,11 @@ namespace maticeukol
         static void FillArrayRandom(int[,] array)
         {
             Random rng = new Random();
-            for (int i = 0;i < array.GetLength(0); i++)
+            for (int i = 0; i < array.GetLength(0); i++)
             {
                 for (int j = 0; j < array.GetLength(1); j++)
                 {
-                    array[i, j] = rng.Next(1,10);
+                    array[i, j] = rng.Next(1, 10);
                 }
             }
         }
@@ -44,11 +48,11 @@ namespace maticeukol
         //vynásobí pole číslem
         static void MultiplyArray(int[,] array, int constant)
         {
-            for(int i = 0;i < array.GetLength(0); i++)
+            for (int i = 0; i < array.GetLength(0); i++)
             {
-                for(int j = 0; j < array.GetLength(1); j++)
+                for (int j = 0; j < array.GetLength(1); j++)
                 {
-                    array[i,j] = constant * array[i,j];
+                    array[i, j] = constant * array[i, j];
                 }
             }
         }
@@ -84,7 +88,7 @@ namespace maticeukol
                     }
                     else
                     {
-                        Console.WriteLine($"můžeš jen mezi {min} a {max-1}");
+                        Console.WriteLine($"můžeš jen mezi {min} a {max - 1}");
                     }
                 }
                 else
@@ -156,9 +160,9 @@ namespace maticeukol
         //sečte všechny čísla v matici
         static int SumOfArray(int[,] array, int Sum)
         {
-            for (int i = 0;i < array.GetLength(0); i++)
+            for (int i = 0; i < array.GetLength(0); i++)
             {
-                for (int j =0; j < array.GetLength(1); j++)
+                for (int j = 0; j < array.GetLength(1); j++)
                 {
                     Sum += array[i, j];
                 }
@@ -171,7 +175,7 @@ namespace maticeukol
             {
                 for (int j = 0; j < array.GetLength(1); j++)
                 {
-                   if (array[i, j] > Max)
+                    if (array[i, j] > Max)
                     {
                         Max = array[i, j];
                     }
@@ -283,7 +287,7 @@ namespace maticeukol
 
 
 
-            
+
             Console.ReadKey();
         }
     }
