@@ -197,7 +197,100 @@ namespace ukolmatice
             }
             return Min;
         }
-        //body 12 + 5 + 7,5 (nebo 10) + 8 + (12,5) + 15
+        //prohodí prvky v rowfirst, columnfirst a rovsecond, columnsecond
+        static void MoveElement(int[,] array)
+        {
+            int rowfirst = 0, columnfirst = 0, rowsecond = 0, columnsecond = 0;
+            int memory;
+            Console.WriteLine("řádek 1. prvku na prohození");
+            rowfirst = NumberInRange(rowfirst, 0, array.GetLength(0));
+            Console.WriteLine("sloupec 1. prvku na prohození");
+            columnfirst = NumberInRange(columnfirst, 0, array.GetLength(1));
+            Console.WriteLine("řádek 2. prvku na prohození");
+            rowsecond = NumberInRange(rowsecond, 0, array.GetLength(0));
+            Console.WriteLine("sloupec 2. prvku na prohození");
+            columnsecond = NumberInRange(columnsecond, 0, array.GetLength(1));
+            memory = array[rowfirst, columnfirst];
+            array[rowfirst, columnfirst] = array[rowsecond, columnsecond];
+            array[rowsecond, columnsecond] = memory;
+        }
+        //prohodí dvě řady
+        static void MoveRow(int[,] array)
+        {
+            int firstrow = 0, secondrow = 0;
+            int memory;
+            Console.WriteLine("1. řádek na prohození");
+            firstrow = NumberInRange(firstrow, 0, array.GetLength(0));
+            Console.WriteLine("2. řádek na prohození");
+            secondrow = NumberInRange(secondrow, 0, array.GetLength(0));
+            for (int i = 0; i < array.GetLength(1); i++)
+            {
+                memory= array[firstrow, i];
+                array[firstrow, i] = array[secondrow, i];
+                array[secondrow, i] = memory;
+            }
+        }
+        //prohodí dva sloupce
+        static void MoveColumn(int[,] array)
+        {
+            int firstcolumn = 0, secondcolumn = 0;
+            int memory;
+            Console.WriteLine("1. řádek na prohození");
+            firstcolumn = NumberInRange(firstcolumn, 0, array.GetLength(0));
+            Console.WriteLine("2. řádek na prohození");
+            secondcolumn = NumberInRange(secondcolumn, 0, array.GetLength(0));
+            for (int i = 0; i < array.GetLength(0); i++)
+            {
+                memory = array[i, firstcolumn];
+                array[i, firstcolumn] = array[i, secondcolumn];
+                array[i, secondcolumn] = memory;
+            }
+        }
+        //převrátí hlavní diagonálu
+        static void SwapMainDiagonal(int[,] array, int rows, int columns)
+        {
+            if (rows != columns)
+            {
+                Console.WriteLine("jde jen u čtvercových matic");
+                return;
+            }
+            for (int i = 0; i < array.GetLength(0) / 2; i++)
+            {
+                int memory = array[i, i];
+                int reversedindex = array.GetLength(0) - 1 - i;
+                array[i, i] = array[reversedindex, reversedindex];
+                array[reversedindex, reversedindex] = memory;
+            }
+        }
+        //převrátí vedlejší diagonálu
+        static void SwapSideDiagonal(int[,] array, int rows, int columns)
+        {
+            if (rows != columns)
+            {
+                Console.WriteLine("jde jen u čtvercových matic");
+                return;
+            }
+            for (int i = 0; i < array.GetLength(0) / 2; i++)
+            {
+                int reversedindex1 = array.GetLength(1) - 1 - i;
+                int reversedindex0 = array.GetLength(0) - 1 - i;
+                int memory = array[i, reversedindex1];
+                array[i, reversedindex1] = array[reversedindex0, i];
+                array[reversedindex0, i] = memory;
+            }
+        }
+        //transpozice
+        static void Transposition(int[,] array, int[,] transposedarray)
+        {
+            for (int i = 0; i < array.GetLength(0); i++)
+            {
+                for (int j = 0; j < array.GetLength(1); j++)
+                {
+                    transposedarray[j, i] = array[i, j];
+                }
+            }
+        }
+        //body 12 + 5 + 7,5 (nebo 10) + 8 + 12,5 + 15
         static void Main(string[] args)
         {
             int rows = 0, columns = 0;
@@ -206,12 +299,12 @@ namespace ukolmatice
             Console.WriteLine("Zadej počet sloupců");
             columns = NumberInRange(columns, 1, 20);
             int[,] my2DArray = new int[rows, columns];
-            //FillArray(my2DArray);
-            FillArrayRandom(my2DArray);
+            FillArray(my2DArray);
+            //FillArrayRandom(my2DArray);
             WriteArray(my2DArray);
-            Console.WriteLine("Co chceš dělat?");
+            Console.WriteLine("Co chceš dělat? (možnosti: multiply, subtract, add, multiplywitharray, sum, ,max, min, moveelement, moverow, movecolumn, swapmaindiagonal, swapsidediagonal, transposition)");
             string operation = Console.ReadLine();
-            while (operation != "multiply" && operation != "subtract" && operation != "add" && operation != "multiplywitharray" && operation != "sum" && operation != "max" && operation != "min")
+            while (operation != "multiply" && operation != "subtract" && operation != "add" && operation != "multiplywitharray" && operation != "sum" && operation != "max" && operation != "min" && operation != "moveelement" && operation != "moverow" && operation != "movecolumn" && operation != "swapmaindiagonal" && operation != "swapsidediagonal" && operation != "transposition")
             {
                 Console.WriteLine("napiš možnou operaci");
                 operation = Console.ReadLine();
@@ -281,6 +374,31 @@ namespace ukolmatice
                     int Min = int.MaxValue;
                     Min = MinOfArray(my2DArray, Min);
                     Console.WriteLine($"nejmenší číslo v matici je {Min}");
+                    break;
+                case "moveelement":
+                    MoveElement(my2DArray);
+                    WriteArray(my2DArray);
+                    break;
+                case "moverow":
+                    MoveRow(my2DArray);
+                    WriteArray(my2DArray);
+                    break;
+                case "movecolumn":
+                    MoveColumn(my2DArray);
+                    WriteArray(my2DArray);
+                    break;
+                case "swapmaindiagonal":
+                    SwapMainDiagonal(my2DArray, rows, columns);
+                    WriteArray(my2DArray);
+                    break;
+                case "swapsidediagonal":
+                    SwapSideDiagonal(my2DArray, rows, columns);
+                    WriteArray(my2DArray);
+                    break;
+                case "transposition":
+                    ResultArray = new int[columns, rows];
+                    Transposition(my2DArray, ResultArray);
+                    WriteArray(ResultArray);
                     break;
             }
 
