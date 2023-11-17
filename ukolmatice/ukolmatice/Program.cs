@@ -299,10 +299,10 @@ namespace ukolmatice
             Console.WriteLine("Zadej počet sloupců");
             columns = NumberInRange(columns, 1, 20);
             int[,] my2DArray = new int[rows, columns];
-            FillArray(my2DArray);
-            //FillArrayRandom(my2DArray);
+            //FillArray(my2DArray);
+            FillArrayRandom(my2DArray);
             WriteArray(my2DArray);
-            Console.WriteLine("Co chceš dělat? (možnosti: multiply, subtract, add, multiplywitharray, sum, ,max, min, moveelement, moverow, movecolumn, swapmaindiagonal, swapsidediagonal, transposition)");
+            Console.WriteLine("Co chceš dělat? (možnosti: multiply, subtract, add, multiplywitharray, sum, max, min, moveelement, moverow, movecolumn, swapmaindiagonal, swapsidediagonal, transposition)");
             string operation = Console.ReadLine();
             while (operation != "multiply" && operation != "subtract" && operation != "add" && operation != "multiplywitharray" && operation != "sum" && operation != "max" && operation != "min" && operation != "moveelement" && operation != "moverow" && operation != "movecolumn" && operation != "swapmaindiagonal" && operation != "swapsidediagonal" && operation != "transposition")
             {
