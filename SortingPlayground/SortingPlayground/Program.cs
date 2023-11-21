@@ -69,9 +69,14 @@ namespace SortingPlayground
              */
             for (int i = 0;i < sortedArray.Length; i++)
             {
-                for(int j = i; j < sortedArray.Length; j++)
+                for(int j = i; j > 0; j--)
                 {
-
+                    if (sortedArray[j] < sortedArray[j - 1])
+                    {
+                        int memory2 = sortedArray[j-1];
+                        sortedArray[j-1] = sortedArray[j];
+                        sortedArray[j] = memory2;
+                    }
                 }
             }
             return sortedArray;
