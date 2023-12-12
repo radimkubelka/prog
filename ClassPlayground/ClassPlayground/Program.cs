@@ -99,15 +99,23 @@ namespace ClassPlayground
 
 
             //úkol 2
-            BankAccount account1 = new BankAccount(1, "Karel Novák", "CZk", 13588925);
+            Console.WriteLine();
+            BankAccount account1 = new BankAccount("Karel Novák", "CZk");
 
-            double balance1AfterAeposit = account1.Deposit(13268568);
+            double balance1AfterAeposit = account1.Deposit(100);
             Console.WriteLine(balance1AfterAeposit);
 
-            double balance1AfterWithdraw = account1.Withdraw(16598756);
+            double balance1AfterWithdraw = account1.Withdraw(50);
             Console.WriteLine(balance1AfterWithdraw);
 
-            BankAccount account2 = new BankAccount(2, "Jarda Sedlák", "CZk", 500000);
+            BankAccount account2 = new BankAccount("Jarda Sedlák", "CZk");
+            account1.Transfer(50, account2);
+            Console.WriteLine(account1.balance);
+            Console.WriteLine(account2.balance);
+
+
+            //úkol 3
+            Console.WriteLine();
 
 
             Console.ReadKey();

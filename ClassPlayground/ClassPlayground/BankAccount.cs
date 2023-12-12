@@ -13,13 +13,13 @@ namespace ClassPlayground
         public string currency;
         public double balance;
 
-        public BankAccount(int accountNumber, string holderName, string currency, double balance)
+        public BankAccount(string holderName, string currency)
         {
             Random rnd = new Random();
-            this.accountNumber = accountNumber;
+            accountNumber = rnd.Next(10000000, 1000000000);
             this.holderName = holderName;
             this.currency = currency;
-            this.balance = balance;
+            balance = 0;
         }
 
         public double Deposit(double addMoney)
@@ -30,16 +30,24 @@ namespace ClassPlayground
 
         public double Withdraw(double withdrawMoney)
         {
-            balance -= withdrawMoney;
-            return balance;
+            if (balance >= withdrawMoney)
+            {
+                balance -= withdrawMoney;
+                return balance;
+            }
+            else
+            {
+                Console.WriteLine("nemáš dost peněz");
+                return 0;
+            }
         }
 
-        public void Transfer(double sendMoney, int accountnumber)
+        public void Transfer(double sendMoney, BankAccount targetaccount)
         {
             if (balance >= sendMoney)
             {
-                balance -= sendMoney;
-                balance += sendMoney;
+                Withdraw(sendMoney);
+                targetaccount.Deposit(sendMoney);
             }
             else
             {
