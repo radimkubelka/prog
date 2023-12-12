@@ -13,7 +13,7 @@ namespace Inheritance
             public string name;
             public int averageMaxAge;
             public int endangerement;
-            public void AnimalNoise()
+            public virtual void AnimalNoise()
             {
                 Console.WriteLine("animal noise");
             }
@@ -22,7 +22,7 @@ namespace Inheritance
         {
             public int numberOfPuppies;
             public string race;
-            public void Bark()
+            public override void AnimalNoise()
             {
                 Console.WriteLine("Woof Woof!");
             }
@@ -32,7 +32,7 @@ namespace Inheritance
         {
             public bool lovesMilk;
             public string furColour;
-            public void Meow()
+            public override void AnimalNoise()
             {
                 Console.WriteLine("Meow Meow!");
             }
@@ -51,8 +51,8 @@ namespace Inheritance
             newCat.furColour = "ginger";
             Console.WriteLine($"{newCat.name}, {newCat.lovesMilk}, {newCat.furColour}");
 
-            newDog.Bark();
-            newCat.Meow();
+            newDog.AnimalNoise();
+            newCat.AnimalNoise();
 
             Console.ReadKey();
         }
