@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ukol_hra
 {
-    internal class boss
+    internal class Boss
     {
     }
 }

@@ -6,10 +6,13 @@ using System.Threading.Tasks;
 
 namespace ukol_hra
 {
-    internal class player
+    internal class Player
     {
         public string name;
         public int kp;          //knowledge point
-
+        public Player(int kp)
+        {
+            this.kp = kp;
+        }
     }
 }
