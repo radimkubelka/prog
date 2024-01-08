@@ -19,6 +19,29 @@ namespace ukol_hra
             this.topic = topic;
             this.points = points;
         }
+        public int DumbTest()
+        {
+            int answer = 0;
+            while (answer != 1 && answer != 2 && answer != 3)
+            {
+                if (int.TryParse(Console.ReadLine(), out answer))
+                {
+                    if (answer == 1 || answer == 2 || answer == 3)
+                    {
+                        return answer;
+                    }
+                    else
+                    {
+                        Console.WriteLine("zadej platnou možnost (1, 2 nebo 3)");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("zadej platnou možnost (1, 2 nebo 3)");
+                }
+            }
+            return -1;
+        }
         public int Ask(string question, string canswer)
         {
             Console.WriteLine(question);
@@ -33,14 +56,15 @@ namespace ukol_hra
                 return 0;
             }
         }
-        public int AskWithOptions(string question, string canswer,string option1, string option2, string option3)
+        public int AskWithOptions(string question, int canswer,string option1, string option2, string option3)
         {
             Console.WriteLine(question);
             Console.WriteLine("Možnosti:");
             Console.WriteLine($"1. {option1}");
             Console.WriteLine($"2. {option2}");
             Console.WriteLine($"3. {option3}");
-            if (Console.ReadLine() == canswer)
+            int imput = DumbTest();
+            if (imput == canswer)
             {
                 Console.WriteLine($"Správná odpověď. Získáváš moje body ({points}) a můžeš pokračovat dál.");
                 return 1;
