@@ -19,5 +19,37 @@ namespace ukol_hra
             this.topic = topic;
             this.points = points;
         }
+        public int Ask(string question, string canswer)
+        {
+            Console.WriteLine(question);
+            if (Console.ReadLine() == canswer)
+            {
+                Console.WriteLine($"Správná odpověď. Získáváš moje body ({points}) a můžeš pokračovat dál.");
+                return 1;
+            }
+            else
+            {
+                Console.WriteLine($"Tohle bouhžel není správně. Správná odpověď je: {canswer}. Beru si od tebe body (-{points}).");
+                return 0;
+            }
+        }
+        public int AskWithOptions(string question, string canswer,string option1, string option2, string option3)
+        {
+            Console.WriteLine(question);
+            Console.WriteLine("Možnosti:");
+            Console.WriteLine($"1. {option1}");
+            Console.WriteLine($"2. {option2}");
+            Console.WriteLine($"3. {option3}");
+            if (Console.ReadLine() == canswer)
+            {
+                Console.WriteLine($"Správná odpověď. Získáváš moje body ({points}) a můžeš pokračovat dál.");
+                return 1;
+            }
+            else
+            {
+                Console.WriteLine($"Tohle bouhžel není správně. Správná odpověď je: {canswer}. Beru si od tebe body (-{points}).");
+                return 0;
+            }
+        }
     }
 }
