@@ -8,8 +8,9 @@ namespace ukol_hra
 {
     internal class Program
     {
+        //aby hráč zadal jen 1 nebo 2
         static int AntiFall()
-        {
+        { 
             int answer = 0;
             while (answer != 1 && answer != 2)
             {
@@ -46,8 +47,7 @@ namespace ukol_hra
             Console.WriteLine($"Vítej v našem světě {hero.name}. Čeká tě složitá cesta, ale za její úspěšné projití tě čeká věčná sláva. Jěště tě musím varovat. Mnoho odvážlivců tuto cestu zkoušelo, ale zatím žádný se nedožil jejího konce. Chceš opravdu riskovat svůj život pro věčnou slávu?");
             Console.WriteLine("1. ano");
             Console.WriteLine("2. Ne, nakonec jsem si to rozmyslel.");
-            int answer = AntiFall();
-            if (answer == 2)
+            if (AntiFall() == 2)
             {
                 Console.WriteLine("Jak myslíš, tak si pokračuj ve svém nezajímavém životě.");
                 Console.ReadKey();
@@ -59,8 +59,7 @@ namespace ukol_hra
             Console.WriteLine("Vidím, že jsi odvážný. Ale odvaha samotná ti tu stačit nebude. To nejhlavnější jsou znalosti. Po své cestě budeš potkávat mnoho lidí a každý se tě bude na něco ptát. Budou to otázky ze všech možných témat, takže se nemusíš bát, že by někdo byl ve víhodě. Teď už je čas, abys ses vydal na cestu. Nebo se snad chceš na neco ještě zeptat?");
             Console.WriteLine("1. Ne");
             Console.WriteLine("2. Kdo jsi ty?");
-            answer = AntiFall();
-            if (answer == 2)
+            if (AntiFall() == 2)
             {
                 Console.WriteLine();
                 Console.WriteLine("Já už nejsem nikdo. Dřív jsem byl jako ty a snažil se dostat na konec této cesty, ale neuspěl jsem. Teď musím navěky sloužit mému pánu a pomáhat novým dobrodruhům");
@@ -103,8 +102,7 @@ namespace ukol_hra
             Console.WriteLine("Tvá cesta se přesunula do prostředí lesa. Oproti poli tu je krásný chládek a zvuky lesa jsou opravdu uklidňující. Najednou slyšíš lidské hlasy. Jsou to tři houbaři. Chvíli si spolu povídáte a říkají, že to jsou opravdu vášniví houbaři z nedaleké vesnice a nabízejí ti lesní jahody, co našli.");
             Console.WriteLine("1. Vzít si jahody.");
             Console.WriteLine("2. Odmítnout");
-            answer = AntiFall();
-            if (answer == 1)
+            if (AntiFall() == 1)
             {
                 Console.WriteLine("Mňam, mňam");
             }
@@ -114,7 +112,7 @@ namespace ukol_hra
             }
             Console.WriteLine("Ukáže se, že houbaři jsou taky hádankáři a každý ti teď položí otázku.");
             Console.WriteLine($"Já jsem první z houbařů a jmenuji se {npc3.name}. Dám ti otázku z tématu {npc3.topic} s obžností {npc3.difficulty}. moje body jsou  {npc3.points}");
-            /*if (npc3.Ask() == 1)
+            if (npc3.Ask() == 1)
             {
                 hero.kp += npc3.points;
             }
@@ -139,7 +137,7 @@ namespace ukol_hra
             else
             {
                 hero.kp -= npc5.points;
-            }*/
+            }
             Console.WriteLine();
 
 
@@ -148,8 +146,7 @@ namespace ukol_hra
             Console.WriteLine($"Zdravím tě {hero.name}. Doufám že moc nespěcháš a chvíli tu pobudeš, abych si s tebou mohla popovídat.");
             Console.WriteLine("1. Bohužel spěchám.");
             Console.WriteLine("2. Ne, nespěchám. Už jdou dlouhou dobu, takže trocha odpočinku mi prospěje.");
-            answer = AntiFall();
-            if (answer == 1)
+            if (AntiFall() == 1)
             {
                 Console.WriteLine($"To je škoda. Přišel jsi o zajímavé informace. Ale co se dá dělat. Však než tě pustím zpátky na tvoji cestu, tak tu položím jednu otázku. Bude {npc6.difficulty} obtížnosti a z okruhu {npc6.topic}");
             }
@@ -159,15 +156,65 @@ namespace ukol_hra
             }
             if (npc6.AskWithOptions() == 1)
             {
-                hero.kp += npc4.points;
+                hero.kp += npc6.points;
             }
             else
             {
-                hero.kp -= npc4.points;
+                hero.kp -= npc6.points;
             }
+            Console.WriteLine("1. Odejít");
+            Console.WriteLine("2. Rozloučit se");
+            if (AntiFall() == 2)
+            {
+                Console.WriteLine($"I tobě hezký zbytek dne {hero.name}. A šťastnou cestu.");
+            }
+            Console.WriteLine();
 
 
+            Console.WriteLine("Od chaloupky pokračuješ dál a dostneš se k jezeru. Jezero by se dalo dobře využít k občestvení. Napiješ se a chceš si i ulovit rybu. Najednou se ale z vody vyboří muž v zeleném fraku a se zeleným cilindrem.");
+            Npc npc7 = new Npc("Vašek", "těžká", "Biologie", 3);
+            Console.WriteLine($"To ať tě ani nenapadne! Na moje ryby mi nesahej! Já jsem {npc7.name} a jsem místním vodníkem. Teď dostaneš otázku a za tvou troufalost bude {npc7.difficulty} a bude z oblasti {npc7.topic}.");
+            if (npc7.AskWithOptions() == 1)
+            {
+                hero.kp += npc7.points;
+            }
+            else
+            {
+                hero.kp -= npc7.points;
+            }
+            Console.WriteLine();
 
+
+            Console.WriteLine("Tohle teda nebyl moc příjemný člověk, že. Teda spíš ne moc příjemný vodník. Pomalu se tě začínají zmocňovat myšlenky, že ta cesta možná opravdu nebude tak jednoduchá a krásná. Ale tvá odvaha tě neopouští a pokračuješ od rybníka dál. Cesta vede kolem podivných soch. Ty jakmile kolem nich procházíš ožívají a zastavují tě v tvé cestě.");
+            Npc npc8 = new Npc("Alfréd", "lehká", "historie", 1);
+            Npc npc9 = new Npc("Přemysl", "lehká", "historie", 1);
+            Console.WriteLine($"Nepospíchej tak {hero.name}. Máme pro tebe každý otázku.");
+            Console.WriteLine("1. Tak se ptejte, pospíchám.");
+            Console.WriteLine("2. A kdo jse, že tu stojíte jak sochy?");
+            if (AntiFall() == 2)
+            {
+                Console.WriteLine($"My totiž opravdu jsme sochy. Dříve tomu tak nebylo, to jsme ještě byli normálními lidmi. Ale před mnoha staletími jsme zkoušeli tuto cestu a neuspěli. Byli jsme zakleti a musime pokládat otázky. Mimochodem já jsem {npc8.name} a toto je můj přítel {npc9.name}. Protože jsme tak staří, tak se tě zeptáme na něco z {npc8.topic}. Ale neboj, do našich kamenných hlav se moc infomací nevejde, takže otázka bude {npc8.difficulty}");
+            }
+            if (npc8.Ask() == 1)
+            {
+                hero.kp += npc8.points;
+            }
+            else
+            {
+                hero.kp -= npc8.points;
+            }
+            if (npc9.Ask() == 1)
+            {
+                hero.kp += npc9.points;
+            }
+            else
+            {
+                hero.kp -= npc9.points;
+            }
+            Console.WriteLine();
+
+
+            Console.WriteLine("");
 
 
 

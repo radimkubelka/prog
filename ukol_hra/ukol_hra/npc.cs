@@ -19,6 +19,7 @@ namespace ukol_hra
             this.topic = topic;
             this.points = points;
         }
+        //aby hráč při možnostech vybral jednu z nich
         public int DumbTest()
         {
             int answer = 0;
@@ -42,6 +43,7 @@ namespace ukol_hra
             }
             return -1;
         }
+        //otázka bez možností
         public int Ask(string question, string canswer)
         {
             Console.WriteLine(question);
@@ -56,6 +58,7 @@ namespace ukol_hra
                 return 0;
             }
         }
+        //otázka s možnostmi
         public int AskWithOptions(string question, int canswer,string option1, string option2, string option3)
         {
             Console.WriteLine(question);
@@ -63,8 +66,7 @@ namespace ukol_hra
             Console.WriteLine($"1. {option1}");
             Console.WriteLine($"2. {option2}");
             Console.WriteLine($"3. {option3}");
-            int imput = DumbTest();
-            if (imput == canswer)
+            if (DumbTest() == canswer)
             {
                 Console.WriteLine($"Správná odpověď. Získáváš moje body ({points}) a můžeš pokračovat dál.");
                 return 1;
