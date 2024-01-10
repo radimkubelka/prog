@@ -10,8 +10,9 @@ namespace ukol_hra
     internal class Boss
     {
         public string name;
-        public string difficulty;
+        //public string difficulty;
         public string topic;
+        public string form;
         //aby hráč vybral jednu z možností
         public int DumbTest()
         {
@@ -36,10 +37,11 @@ namespace ukol_hra
             }
             return -1;
         }
-        public Boss(string name, string difficulty, string topic)
+        public Boss(string name, string form, string topic)
         {
             this.name = name;
-            this.difficulty = difficulty;
+            this.form = form;
+            //this.difficulty = difficulty;
             this.topic = topic;
         }
         public int AskWithOptions(string question, int canswer, string option1, string option2, string option3)
@@ -51,12 +53,12 @@ namespace ukol_hra
             Console.WriteLine($"3. {option3}");
             if (DumbTest() == canswer)
             {
-                Console.WriteLine($"Správná odpověď. ");
+                Console.WriteLine($"Správná odpověď.");
                 return 1;
             }
             else
             {
-                Console.WriteLine($"Tohle bouhžel není správně. Správná odpověď je: {canswer}.");
+                Console.WriteLine($"Špatná odpověď. Správná odpověď je: {canswer}.");
                 return 0;
             }
         }

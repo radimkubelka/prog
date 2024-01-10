@@ -12,6 +12,7 @@ namespace ukol_hra
         public string difficulty;
         public string topic;
         public int points;
+        public bool correct = false;
         public Npc(string name, string difficulty, string topic, int points)
         { 
             this.name = name;
