@@ -296,15 +296,17 @@ namespace ukol_hra
             Npc npc12 = new Npc("Smrt", "těžká", "strach", 3);
             Console.WriteLine("Rychle postupuješ dál a tma pomalu opadá. Místo ní teď přichází mlha. Z ní se pomalu noří hřbitov. Cesta vede skrz něj a tak ti nezbývá nic jiného, než do něj vejít. U největší hrobky na tebe čeká postava s kosou.");
             Console.WriteLine($"Nemusíš se mě bát. Jsem sice {npc12.name}, ale zatím jsem si pro tebe nepřišla. Pouze ti položím otázku a ještě ti něco povím. Bude to tvá snad předposlední otázka. Bude {npc12.difficulty} a z tématu mně nejbližšímu: {npc12.topic}. Ale neboj není na ní špatná odpověď, pouze se budeš muset podívat do svého srdce.");
+            Console.ReadLine();
             hero.kp += npc12.points;
-            if (hero.kp < 11)
+            if (hero.kp < 13)
             {
                 Console.WriteLine("Zajímavá odpověď. Bohužel se podle tvých odpovědí ukázalo, že nepatříš k těm nejbystřejším. Proto ti dám možnost si zopakovat ty špatné a pokud se dostatečně napravíš, můžes pokračovat k našemu pánu. Jinak pro tebe cesta končí.");
+                Console.WriteLine();
                 if (npc1.correct == false)                              
                 {
                     if (npc1.AskWithOptions("Jaké je první písmeno abecedy?", 3, "d", "t", "a") == 1)         
                     {
-                        hero.kp += npc1.points;                         //tohle není úplně ideální postup, ale lepši se mi nepodařilo vymyslet
+                        hero.kp += 2*npc1.points;                         //tohle není úplně ideální postup, ale lepši se mi nepodařilo vymyslet
                         Console.WriteLine();
                     }
                     else
@@ -317,7 +319,7 @@ namespace ukol_hra
                 {
                     if (npc2.Ask("Kolik má USA států?", "50") == 1)
                     {
-                        hero.kp += npc2.points;
+                        hero.kp += 2 * npc2.points;
                         Console.WriteLine();
                     }
                     else
@@ -330,7 +332,7 @@ namespace ukol_hra
                 {
                     if (npc3.Ask("Kolik celých kilometrů má maraton?", "42") == 1)
                     {
-                        hero.kp += npc3.points;
+                        hero.kp += 2*npc3.points;
                         Console.WriteLine();
                     }
                     else
@@ -343,7 +345,7 @@ namespace ukol_hra
                 {
                     if (npc4.AskWithOptions("O jakém tvaru jsou Euklidovy věty?", 2, "Kruh", "Trojúhelník", "Lichoběžník") == 1)
                     {
-                        hero.kp += npc4.points;
+                        hero.kp += 2*npc4.points;
                         Console.WriteLine();
                     }
                     else
@@ -356,7 +358,7 @@ namespace ukol_hra
                 {
                     if (npc5.AskWithOptions("Jaká dynastie vládla na českém trůně po Přemyslovcích", 3, "Habsburkové", "Jagellonci", "Lucemburkové") == 1)
                     {
-                        hero.kp += npc5.points;
+                        hero.kp += 2 * npc5.points;
                         Console.WriteLine();
                     }
                     else
@@ -369,7 +371,7 @@ namespace ukol_hra
                 {
                     if (npc6.AskWithOptions("Co je babské ucho?", 1, "Šalvěj", "Choroš", "Pampeliška") == 1)
                     {
-                        hero.kp += npc6.points;
+                        hero.kp += 2*npc6.points;
                         Console.WriteLine();
                     }
                     else
@@ -382,7 +384,7 @@ namespace ukol_hra
                 {
                     if (npc7.AskWithOptions("Jaká je největší původní česká ryba?", 2, "Štika", "Sumec", "Úhoř") == 1)
                     {
-                        hero.kp += npc7.points;
+                        hero.kp += 2 * npc7.points;
                         Console.WriteLine();
                     }
                     else
@@ -395,7 +397,7 @@ namespace ukol_hra
                 {
                     if (npc8.Ask("V jakém roce skončila 2. světová válka", "1945") == 1)
                     {
-                        hero.kp += npc8.points;
+                        hero.kp += 2*npc8.points;
                         Console.WriteLine();
                     }
                     else
@@ -408,7 +410,7 @@ namespace ukol_hra
                 {
                     if (npc9.Ask("Kdy vstoupila Česká republika do EU", "2004") == 1)
                     {
-                        hero.kp += npc9.points;
+                        hero.kp += 2 * npc9.points;
                         Console.WriteLine();
                     }
                     else
@@ -421,7 +423,7 @@ namespace ukol_hra
                 {
                     if (npc10.AskWithOptions("Jaké je největší souhvězdí podle plochy na nebi?", 1, "Hydra", "Velký vůz", "Orion") == 1)
                     {
-                        hero.kp += npc10.points;
+                        hero.kp += 2*npc10.points;
                         Console.WriteLine();
                     }
                     else
@@ -434,7 +436,7 @@ namespace ukol_hra
                 {
                     if (npc11.AskWithOptions("Jak se německy řekne krabička sirek?", 3, "Vergnügungspark", "Sirkenbox", "Streichholzschachtel") == 1)
                     {
-                        hero.kp += npc11.points;
+                        hero.kp += 2 * npc11.points;
                         Console.WriteLine();
                     }
                     else
@@ -443,11 +445,22 @@ namespace ukol_hra
                         Console.WriteLine();
                     }
                 }
+                if (hero.kp < 13)
+                {
+                    Console.WriteLine("Bojužel ses moc nepolepšil. Je vidět, že ti na moudrosti nezáleží a ze svých chyb ses nepoučil. Proto pro tebe tady cesta končí.");
+                    Console.ReadKey();
+                    return;
+                }
+                else
+                {
+                    Console.WriteLine("Výborně, polepšil ses. Za to si zasloužít dojít k našemu pánu.");
+                }
             }
             else
             {
                 Console.WriteLine($"Zajímavá odpověď. Před tebou stojí už jen poslední otázka. A to přímo od našeho pána. Na plácku, na který teď dojdeš se ti zjeví v jedné z jeho tří forem. Musíš správně odpovědět na jeho otázku nebo přijde můj čas a postarám se o tebe já {npc12.name}.");
             }
+            Console.WriteLine();
             Boss boss1 = new Boss("Ábel", "robot", "matematika");
             Boss boss2 = new Boss("Ábel", "drak", "politika");
             Boss boss3 = new Boss("Ábel", "čert", "sport");
